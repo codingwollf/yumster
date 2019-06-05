@@ -110,6 +110,7 @@
       </div>
         <%= simple_form_for @photo, url: place_photos_path(@place) do |e| %>
         <div class="modal-body">
+          <small><i>[HEADS UP: Please write a caption and upload a photo in order for this to save!]</i></small><br /><br />
           <%= e.input :picture %> 
           <%= e.input :caption %>
         </div>
