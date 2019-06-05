@@ -1,31 +1,30 @@
 class PlacesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-	include Pagy::Backend
+  include Pagy::Backend
   # specific way of referring to a part of a class ::
-def index
-	@pagy, @places = pagy(Place.all, items: 5)
-  # Multiple variables in the same line, @pagy is not something we are defining -- it's coming from the gem
-end
+  def index
+    @places = Place.all.paginate(page: params[:page], per_page: 5).order("created_at DESC")
+  end
 
-	def new
-		@place = Place.new
-	end
+  def new
+    @place = Place.new
+  end
 
-def create
+  def create
      @place = current_user.places.create(place_params)
      @place.geocode
-  if @place.valid?
+    if @place.valid?
     redirect_to root_path
-  else
+    else
     render :new, status: :unprocessable_entity
+    end
   end
-end
 
-def show
-  @place = Place.find(params[:id])
-  @comment = Comment.new
-  @photo = Photo.new
-end 
+  def show
+    @place = Place.find(params[:id])
+    @comment = Comment.new
+    @photo = Photo.new
+  end 
 
 def edit
   @place = Place.find(params[:id])
@@ -37,22 +36,22 @@ end
 
 def update
   @place = Place.find(params[:id])
-  if @place.user != current_user
+    if @place.user != current_user
     return render plain: 'Not Allowed', status: :forbidden
   end
 
   @place.update_attributes(place_params)
    if @place.valid?
     redirect_to root_path
-  else
+    else
     render :edit, status: :unprocessable_entity
   end
 end
 
 def destroy
-  @place = Place.find(params[:id])
-  if @place.user != current_user
-    return render plain: 'Not Allowed', status: :forbidden
+    @place = Place.find(params[:id])
+    if @place.user != current_user
+      return render plain: 'Not Allowed', status: :forbidden
   end
 
   @place.destroy

@@ -68,6 +68,7 @@ gem 'simple_form'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
+gem 'will_paginate'
 gem 'pagy'
 gem 'font-awesome-rails'
 gem 'devise'
