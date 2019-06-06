@@ -69,6 +69,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'pagy'
 gem 'font-awesome-rails'
 gem 'devise'

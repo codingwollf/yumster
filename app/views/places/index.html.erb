@@ -14,13 +14,13 @@
     <div class="carousel-item">
        <%= image_tag 'slider2.png', class: 'd-block img-fluid' %>
       <div class="carousel-caption">
-          <h3><font color="#99ff33">Share your hidden gems and photos!</font></h3>
+          <h3><font color="#e1e9f7">Share your hidden gems and photos!</font></h3>
       </div>
     </div>
     <div class="carousel-item">
       <%= image_tag 'slider3.png', class: 'd-block img-fluid' %>
       <div class="carousel-caption">
-          <h3><font color="#41d9f4">And let others know your thoughts!</font></h3>
+          <h3><font color="#afb8c9">And let others know your thoughts!</font></h3>
       </div>
     </div>
   </div>
@@ -71,8 +71,8 @@
 
 <br />
 
-<div class="digg_pagination offset-1">
-<%= will_paginate @places %>
+<div class="digg_pagination offset-6">
+<%= will_paginate @places, renderer: BootstrapPagination::Rails %>
 </div>
 
 <br />
